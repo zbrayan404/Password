@@ -1,0 +1,3 @@
+export const MESSAGE_HEADER = "HIDEINIMAGE";
+export const MESSAGE_BORDER = ":";
+export const MESSAGE_FORMAT = `${MESSAGE_HEADER}${MESSAGE_BORDER}<L>${MESSAGE_BORDER}<M>`;
