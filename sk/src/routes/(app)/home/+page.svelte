@@ -22,11 +22,6 @@
 </div>
 
 <style>
-  :global(:root) {
-    --gray: #141d26;
-    --white: #f5f7fa;
-    --primary: #c51f5d;
-  }
   .body {
     display: flex;
     justify-content: center;
@@ -34,7 +29,7 @@
     flex-direction: column;
   }
   .main {
-    background-color: var(--gray);
+    background-color: var(--black);
     color: var(--white);
     border-radius: 22.83px;
     background-clip: padding-box;

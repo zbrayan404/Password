@@ -3,8 +3,8 @@
   import { page } from "$app/stores";
 
   let navItems = [
-    { name: "Home", path: "/home" },
-    { name: "Save", path: "/save" },
+    { name: "Login", path: "/login" },
+    { name: "Register", path: "/register" },
   ];
 </script>
 
@@ -32,10 +32,10 @@
     --black: #141d26;
   }
   :global(body) {
-    background-color: var(--gray);
+    background-color: var(--black);
   }
   .header {
-    background-color: var(--gray);
+    background-color: var(--black);
     display: flex;
     justify-content: center;
     height: 50px;

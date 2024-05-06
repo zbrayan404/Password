@@ -62,7 +62,7 @@
     opacity: 0.33;
   }
   input {
-    background-color: var(--gray);
+    background-color: var(--black);
     color: var(--white);
     border-radius: 5.83px;
     padding: 0.5rem;

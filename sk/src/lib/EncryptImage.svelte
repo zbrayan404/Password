@@ -175,12 +175,12 @@
     border: 2px solid;
     transition: 0.3s;
     box-shadow: 5px 5px 0px 0px var(--white);
-    background-color: var(--gray);
+    background-color: var(--black);
     border-radius: 5.83px;
   }
   form button:hover {
     box-shadow: 0 0 black;
-    color: var(--gray);
+    color: var(--black);
     background-color: var(--white);
   }
   form .buttons {
@@ -196,6 +196,7 @@
     justify-content: center;
     flex-direction: column;
     border-radius: 5.83px;
+    background-color: var(--black);
     padding: 20px;
     gap: 15px;
   }
@@ -214,7 +215,8 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    color: var(--gray);
+    color: var(--black);
+    background-color: var(--black);
     border-radius: 5.83px;
   }
   img {
@@ -233,7 +235,7 @@
     flex-wrap: wrap;
   }
   input {
-    background-color: var(--gray);
+    background-color: var(--black);
     color: var(--white);
     border-radius: 5.83px;
     padding: 0.5rem;
