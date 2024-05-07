@@ -1,10 +1,13 @@
 <script lang="ts">
+  import Table from "$lib/Table.svelte";
+  export let data;
 </script>
 
 <div class="body">
   <div class="header"></div>
   <div class="main">
     <h1>Save</h1>
+    <Table passwords={data.data}></Table>
   </div>
 </div>
 

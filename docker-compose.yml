@@ -1,0 +1,21 @@
+services:
+  pb:
+    container_name: svelte-pocketbase
+    working_dir: /pb
+    build: ./pb
+    volumes:
+      - ./pb/pb_data:/pb/pb_data
+      - ./pb/pb_migrations:/pb/pb_migrations
+    ports:
+      - 8080:8080
+  sk:
+    container_name: svelte-app
+    working_dir: /sk
+    build: ./sk
+    environment:
+      - ORIGIN=http://localhost:3000
+    volumes:
+      - ./sk/src:/sk/src
+      - ./sk/.svelte-kit/:/sk/.svelte-kit
+    ports:
+      - 3000:3000

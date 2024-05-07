@@ -1,14 +1,9 @@
 <script>
   import { Eye, EyeOff } from "lucide-svelte";
-  import { onMount } from "svelte";
 
   export let password = "";
   export let disable = false;
   let showPassword = false;
-
-  onMount(() => {
-    console.log("PasswordInput mounted");
-  });
 </script>
 
 <div class="input-wrapper">

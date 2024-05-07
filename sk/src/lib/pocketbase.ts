@@ -1,4 +1,3 @@
 import PocketBase from "pocketbase";
-import { SERVER_PB } from "$env/static/private";
 
-export const pb = new PocketBase(SERVER_PB);
+export const pb = new PocketBase("http://pb:8080");

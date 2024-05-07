@@ -3,6 +3,7 @@
   import { formattedMessage, toBinary, embedMessage } from "$lib/utils/encode";
   import PasswordInput from "./PasswordInput.svelte";
   import pkg from "crypto-js";
+  import AddPassword from "./AddPassword.svelte";
 
   const { AES } = pkg;
 
@@ -16,6 +17,7 @@
   let showPlainImage: boolean = false;
   let showEncodedImage: boolean = false;
   let downloadImage: boolean = false;
+  let save: boolean = false;
 
   type Message = {
     email: string;
@@ -144,6 +146,11 @@
       </div>
     </div>
     <div class="buttons">
+      <button
+        type="button"
+        on:click={() => (save = true)}
+        hidden={!downloadImage}>Save</button
+      >
       <button type="button" on:click={saveImage} hidden={!downloadImage}
         >Download</button
       >
@@ -151,6 +158,11 @@
     </div>
   </form>
 </div>
+
+{#if save}
+  <AddPassword bind:isOpen={save} bind:imageInput={encodedBase64Image}
+  ></AddPassword>
+{/if}
 
 <style>
   form {
