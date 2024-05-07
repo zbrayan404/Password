@@ -2,6 +2,7 @@ FROM alpine:latest
 
 ARG PB_VERSION=0.22.11
 
+# Install unzip and ca-certificates
 RUN apk add --no-cache \
     unzip \
     ca-certificates
@@ -13,6 +14,7 @@ RUN unzip /tmp/pb.zip -d /pb/
 # Copy the local pb_migrations dir into the image
 COPY ./pb_migrations /pb/pb_migrations
 
+# Expose the PocketBase port
 EXPOSE 8080
 
 # Start PocketBase
