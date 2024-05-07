@@ -22,7 +22,7 @@ export async function load({ locals }) {
   };
 }
 
-function replaceHost(url: string): string {
+function replaceHost(url) {
   const urlObj = new URL(url);
   urlObj.hostname = "localhost";
   return urlObj.toString();
