@@ -1,21 +1,36 @@
 services:
   pb:
+    # Container name
     container_name: svelte-pocketbase
+    # Working directory inside the container
     working_dir: /pb
+    # Path to Dockerfile for building the image
     build: ./pb
+    # Mounts host's directories to container's directories
     volumes:
       - ./pb/pb_data:/pb/pb_data
       - ./pb/pb_migrations:/pb/pb_migrations
+    # Maps port 8080 on the host to port 8080 on the container
     ports:
       - 8080:8080
+
   sk:
+    # Container name
     container_name: svelte-app
+    # Working directory inside the container
     working_dir: /sk
+    # Path to Dockerfile for building the image
     build: ./sk
+    # Sets ORIGIN environment variable to http://localhost:3000
     environment:
       - ORIGIN=http://localhost:3000
+    # Depends on pb service
+    depends_on:
+      - pb
+    # Mounts host's directories to container's directories
     volumes:
       - ./sk/src:/sk/src
       - ./sk/.svelte-kit/:/sk/.svelte-kit
+    # Maps port 3000 on the host to port 3000 on the container
     ports:
       - 3000:3000
