@@ -1,48 +1,9 @@
 <script lang="ts">
-  import { pb } from "$lib/pocketbase.js";
-  import { onMount } from "svelte";
-  import { redirect } from "@sveltejs/kit";
-
-  const PB = pb;
-
   export let isOpen: boolean = false;
   export let imageInput: string | undefined;
 
   let name = "";
   let url = "";
-
-  async function getBlob(url: string): Promise<Blob> {
-    const response = await fetch(url);
-    const blob = await response.blob();
-    return blob;
-  }
-
-  async function addPassword() {
-    const image = await getBlob(imageInput);
-
-    if (!image) {
-      console.error("Image not provided");
-    }
-
-    const data = {
-      user: PB.authStore?.model.id,
-      name: name,
-      url: url,
-      image: image,
-    };
-
-    try {
-      await PB.collection("passwords").create(data);
-      isOpen = false;
-      throw redirect(303, "/save");
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  onMount(async () => {
-    PB.authStore?.loadFromCookie(document.cookie);
-  });
 </script>
 
 {#if isOpen}
@@ -53,7 +14,7 @@
           <div class="prose">
             <h1>Save</h1>
           </div>
-          <form class="flex flex-col gap-4" on:submit|preventDefault>
+          <form class="flex flex-col gap-4" method="POST" action="?/add">
             <div class="flex w-full gap-4 mt-3">
               <div class="flex flex-col gap-2">
                 <label for="name">Name:</label>
@@ -63,12 +24,19 @@
                 <label for="url">URL:</label>
                 <input type="text" name="url" bind:value={url} required />
               </div>
+              <input
+                hidden
+                type="text"
+                name="image"
+                bind:value={imageInput}
+                required
+              />
             </div>
             <div class="flex items-center justify-end gap-4 mt-5">
               <button type="button" on:click={() => (isOpen = false)}
                 >Close</button
               >
-              <button on:click={addPassword} type="submit">Add</button>
+              <button type="submit">Add</button>
             </div>
           </form>
         </section>
