@@ -3,19 +3,19 @@ import { MESSAGE_HEADER, MESSAGE_BORDER } from "$lib/constants";
 export function* extractText(
   imageData: ImageData
 ): Generator<string, void, void> {
-  let pixelBits = "";
-  for (let i = 0; i < imageData.data.length; i += 1) {
-    if (i % 4 === 3) {
+  let bits = "";
+  for (let byte = 0; byte < imageData.data.length; byte += 1) {
+    if (byte % 4 === 3) {
       continue;
     }
-    if (imageData.data[i] % 2 === 0) {
-      pixelBits += "0";
+    if (imageData.data[byte] % 2 === 0) {
+      bits += "0";
     } else {
-      pixelBits += "1";
+      bits += "1";
     }
-    if (pixelBits.length === 8) {
-      yield toChar(pixelBits);
-      pixelBits = "";
+    if (bits.length === 8) {
+      yield toChar(bits);
+      bits = "";
     }
   }
 }

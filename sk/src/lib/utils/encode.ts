@@ -20,15 +20,20 @@ export async function embedMessage(
   if (message.length > 3 * imageData.height * imageData.width) {
     throw new Error("Message length is too large to hide in image");
   }
-  for (let i = 0, j = 0; i < imageData.data.length; i += 1) {
-    if (i % 4 === 3) {
-      imageData.data[i] = 255;
+  for (let byte = 0, char = 0; byte < imageData.data.length; byte += 1) {
+    if (byte % 4 === 3) {
+      imageData.data[byte] = 255;
       continue;
     }
-    if (j < message.length) {
-      imageData.data[i] = (imageData.data[i] & 254) + Number(message[j]);
-      j += 1;
+    if (char < message.length) {
+      imageData.data[byte] =
+        (imageData.data[byte] & 254) + Number(message[char]);
+      char += 1;
     }
   }
   return imageData;
 }
+
+
+
+
